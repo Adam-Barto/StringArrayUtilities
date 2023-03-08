@@ -1,9 +1,6 @@
 package com.zipcodewilmington;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Created by leon on 1/29/18.
@@ -91,7 +88,7 @@ public class StringArrayUtils {
         int start = Character.getNumericValue('a');
         int stop = Character.getNumericValue('z');
         for(int i = start; i <= stop; i++){
-            System.out.println(Character.forDigit(i,36));
+            //System.out.println(Character.forDigit(i,36));
            if (!contains(array,String.valueOf(Character.forDigit(i,36)))
            && (!contains(array,String.valueOf(Character.forDigit(i,36)).toUpperCase()))){
                 return false;
@@ -133,7 +130,20 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
+        ArrayList<String> answer = new ArrayList<>();
+        answer.add(array[0]);
+        for (int i = 1; i < array.length; i++) {
+            //if (i != array.length-1) {
+                if (!array[i].equals(array[i - 1])) {
+                    answer.add(array[i]);
+                }
+//            }else {
+//                answer.add(array[array.length-1]);
+//            }
+        }
+//        System.out.println(Arrays.toString(array));
+//        System.out.println(Arrays.toString(answer.toArray(new String[0])));
+        return answer.toArray(new String[0]);
     }
 
     /**
@@ -141,8 +151,24 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        return null;
+        List<String> answer = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        sb.append(array[0]); //Puts something there
+
+        for (int i = 1; i < array.length; i++){
+            if (array[i] == array[i-1]){
+                sb.append(array[i]);
+            }else {
+                answer.add(sb.toString());
+                sb.setLength(0);
+                sb.append(array[i]);
+            }
+        }
+        answer.add(sb.toString());
+        return answer.toArray(new String[0]);
+        //return null;
     }
+
 
 
 }
