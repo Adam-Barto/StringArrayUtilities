@@ -133,16 +133,10 @@ public class StringArrayUtils {
         ArrayList<String> answer = new ArrayList<>();
         answer.add(array[0]);
         for (int i = 1; i < array.length; i++) {
-            //if (i != array.length-1) {
-                if (!array[i].equals(array[i - 1])) {
-                    answer.add(array[i]);
-                }
-//            }else {
-//                answer.add(array[array.length-1]);
-//            }
+            if (!array[i].equals(array[i - 1])) {
+                answer.add(array[i]);
+            }
         }
-//        System.out.println(Arrays.toString(array));
-//        System.out.println(Arrays.toString(answer.toArray(new String[0])));
         return answer.toArray(new String[0]);
     }
 
@@ -152,19 +146,18 @@ public class StringArrayUtils {
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
         List<String> answer = new ArrayList<>();
-        StringBuilder sb = new StringBuilder();
-        sb.append(array[0]); //Puts something there
-
+        StringBuilder bus = new StringBuilder();
+        bus.append(array[0]); //Puts something there
         for (int i = 1; i < array.length; i++){
             if (array[i] == array[i-1]){
-                sb.append(array[i]);
+                bus.append(array[i]);
             }else {
-                answer.add(sb.toString());
-                sb.setLength(0);
-                sb.append(array[i]);
+                answer.add(bus.toString());
+                bus.setLength(0);
+                bus.append(array[i]);
             }
         }
-        answer.add(sb.toString());
+        answer.add(bus.toString());
         return answer.toArray(new String[0]);
         //return null;
     }
